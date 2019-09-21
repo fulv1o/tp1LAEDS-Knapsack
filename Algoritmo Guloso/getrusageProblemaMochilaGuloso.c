@@ -18,8 +18,8 @@ typedef struct Item item;
 void algoritmoGuloso(item itens[], int quantItens, int capMochila, int *pesoMax, int *valorMax){
     int mochila = 0;
     int tempPeso = 0;
-    /*Com o vetor de itens já ordenado, ele seleciona as posições da esqquerda para direita
-      até que a soma dos pesos chegue em seu limite*/
+    /*Com o vetor de itens jÃ¡ ordenado, ele seleciona as posiÃ§Ãµes da esqquerda para direita
+      atÃ© que a soma dos pesos chegue em seu limite*/
     for(int i = 0; i < quantItens; i++){
         if((itens[i].peso + tempPeso) <= capMochila){
             tempPeso += itens[i].peso;
@@ -37,7 +37,7 @@ void ordenarEstrutra(item itens[], int quantItens){
         itens[i].razao = (float)itens[i].valor/itens[i].peso;
     }
 
-    //Método inserction sort para ordenação de vetores, ineficiente para vetores grandes
+    //MÃ©todo inserction sort para ordenaÃ§Ã£o de vetores, ineficiente para vetores grandes
     item aux;
     for(int i = 0; i < quantItens; i++){
         for(int j = 0; j < quantItens; j++){
@@ -69,8 +69,8 @@ void construtorArquivo(){
         pesoMax += peso[i];
     }
 
-     /*isso garante um uma mochila com capacidade mínima que caiba ao menos um dos itens
-      gerados e com capacidade máxima igual a metade da soma do peso dos itens*/
+     /*isso garante um uma mochila com capacidade mÃ­nima que caiba ao menos um dos itens
+      gerados e com capacidade mÃ¡xima igual a metade da soma do peso dos itens*/
     int magica = (rand()%quantItens)-1;
     capMochila = ( rand() % ((pesoMax/2)-peso[magica])) + peso[magica];
 
@@ -86,7 +86,7 @@ void construtorArquivo(){
 
 void carregarArquivo(int *capMochila, int *quantItens, item itens[]){
     FILE *f;
-    f = fopen("arquivo_entrada_100000.txt","r");
+    f = fopen("arquivo_entrada.txt","r");
 
     int cont = 0;
 
@@ -107,7 +107,7 @@ void carregarArquivo(int *capMochila, int *quantItens, item itens[]){
 
 void imprimirArquivo(item itens[], int quantItens, int maxPeso, int maxValor){
 
-    FILE *f = fopen("arquivo_resposta_100000.txt","w");
+    FILE *f = fopen("arquivo_resposta.txt","w");
 
     if (f == NULL) {
           printf("Erro na abertura do arquivo!\n");
@@ -141,15 +141,15 @@ int main(int argc, char *argv[])
      int capMochila, quantItens;
      item itens[MAX_TAM];
 
-     //Função construtorArquivo() suprimida do código. Utilizar, se necessário.
+     //FunÃ§Ã£o construtorArquivo() suprimida do cÃ³digo. Utilizar, se necessÃ¡rio.
      //construtorArquivo();
-     //Lê o arquivo criado
+     //LÃª o arquivo criado
      carregarArquivo(&capMochila, &quantItens, itens);
      //Ordena o vetor de estrutura do tipo item
      ordenarEstrutra(itens, quantItens);
      //Algoritmo para solucionar o problema
      algoritmoGuloso(itens, quantItens, capMochila, &pesoMax, &valorMax);
-     /*Imprime o resultado com o padrão id, peso e valor. Nas últimas 2 linhas é
+     /*Imprime o resultado com o padrÃ£o id, peso e valor. Nas Ãºltimas 2 linhas Ã©
        informado o peso e valor contido na mochila*/
      imprimirArquivo(itens, quantItens, pesoMax, valorMax);
      //--------------------------------------------------------------------------------
@@ -157,7 +157,7 @@ int main(int argc, char *argv[])
 
      getrusage(who, &usage);
 
-     //tempo de usuário na CPU
+     //tempo de usuÃ¡rio na CPU
      utotalseg = usage.ru_utime.tv_sec; //segundos
      utotalmicroseg = usage.ru_utime.tv_usec; //microsegundos
 
