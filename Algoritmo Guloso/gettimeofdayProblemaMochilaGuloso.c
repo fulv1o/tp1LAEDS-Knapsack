@@ -1,3 +1,13 @@
+/************************************************
+LAED1 - Trabalho Pratico 1
+Aluno: Fulvio Taroni Monteforte
+       Thiago Lima Bahia Santos
+Matricula: 20183005944
+           20183000302
+Descricao do programa: Problema da Mochila | Algoritmo Guloso + gettimeofday()
+Data: 24/09/19
+************************************************/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/time.h>
@@ -17,8 +27,8 @@ typedef struct Item item;
 void algoritmoGuloso(item itens[], int quantItens, int capMochila, int *pesoMax, int *valorMax){
     int mochila = 0;
     int tempPeso = 0;
-    /*Com o vetor de itens já ordenado, ele seleciona as posições da esqquerda para direita
-      até que a soma dos pesos chegue em seu limite*/
+    /*Com o vetor de itens jÃ¡ ordenado, ele seleciona as posiÃ§Ãµes da esqquerda para direita
+      atÃ© que a soma dos pesos chegue em seu limite*/
     for(int i = 0; i < quantItens; i++){
         if((itens[i].peso + tempPeso) <= capMochila){
             tempPeso += itens[i].peso;
@@ -36,7 +46,7 @@ void ordenarEstrutra(item itens[], int quantItens){
         itens[i].razao = (float)itens[i].valor/itens[i].peso;
     }
 
-    //Método inserction sort para ordenação de vetores, ineficiente para vetores grandes
+    //MÃ©todo inserction sort para ordenaÃ§Ã£o de vetores, ineficiente para vetores grandes
     item aux;
     for(int i = 0; i < quantItens; i++){
         for(int j = 0; j < quantItens; j++){
@@ -68,8 +78,8 @@ void construtorArquivo(){
         pesoMax += peso[i];
     }
 
-     /*isso garante um uma mochila com capacidade mínima que caiba ao menos um dos itens
-      gerados e com capacidade máxima igual a metade da soma do peso dos itens*/
+     /*isso garante um uma mochila com capacidade mÃ­nima que caiba ao menos um dos itens
+      gerados e com capacidade mÃ¡xima igual a metade da soma do peso dos itens*/
     int magica = (rand()%quantItens)-1;
     capMochila = ( rand() % ((pesoMax/2)-peso[magica])) + peso[magica];
 
@@ -146,15 +156,15 @@ int main(int argc, char *argv[])
      int capMochila, quantItens;
      item itens[MAX_TAM];
 
-     //Função construtorArquivo() suprimida do código. Utilizar, se necessário.
+     //FunÃ§Ã£o construtorArquivo() suprimida do cÃ³digo. Utilizar, se necessÃ¡rio.
      //construtorArquivo();
-     //Lê o arquivo criado
+     //LÃª o arquivo criado
      carregarArquivo(&capMochila, &quantItens, itens);
      //Ordena o vetor de estrutura do tipo item
      ordenarEstrutra(itens, quantItens);
      //Algoritmo para solucionar o problema
      algoritmoGuloso(itens, quantItens, capMochila, &pesoMax, &valorMax);
-     /*Imprime o resultado com o padrão id, peso e valor. Nas últimas 2 linhas é
+     /*Imprime o resultado com o padrÃ£o id, peso e valor. Nas Ãºltimas 2 linhas Ã©
        informado o peso e valor contido na mochila*/
      imprimirArquivo(itens, quantItens, pesoMax, valorMax);
      //--------------------------------------------------------------------------------
