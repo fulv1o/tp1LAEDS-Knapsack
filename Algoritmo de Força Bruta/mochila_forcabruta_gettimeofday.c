@@ -1,3 +1,13 @@
+/************************************************
+LAED1 - Trabalho Pratico 1
+Aluno: Fulvio Taroni Monteforte
+       Thiago Lima Bahia Santos
+Matricula: 20183005944
+           20183000302
+Descricao do programa: Problema da Mochila | Algoritmo de Forca Bruta + gettimeofday()
+Data: 24/09/19
+************************************************/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/time.h>
